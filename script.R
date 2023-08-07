@@ -173,3 +173,53 @@ dataset$POL <- NULL
 
 #Date variable will be excluded
 dataset$Date <- NULL
+
+# creating training and test sets
+library(caret)
+set.seed(1)
+train.indices <- createDataPartition(dataset$Award, p = 0.8, list = FALSE)
+train.data <- dataset[train.indices,]
+test.data <- dataset[-train.indices,]
+
+#creating a prediction model using Classification Trees
+library(rpart)
+tree1 <- rpart(Award ~ ., 
+               data = train.data,
+               method = "class")
+#printing tree
+library(rpart.plot)
+rpart.plot(tree1, extra = 104)
+
+#only one variable 'US Rec World' was used to build model
+
+# evaluation of the created model on test set
+tree1.pred <- predict(object = tree1, newdata = test.data, type = 'class')
+head(tree1.pred)
+
+# to evaluate the predictive quality of the created model we will create confusion matrix
+
+tree1.cm <- table(true = test.data$Award, predicted = tree1.pred)
+tree1.cm
+
+# computing evaluation metrics
+tree1.eval <- compute.eval.metrics(tree1.cm)
+tree1.eval
+
+# Accuracy is the proportion of correct predictions made by the model out of total predictions
+# in my case for 1 instance its predicted value was 'Yes' (it got an award) and it was correct,
+# and for 57 instances the predicted value also matched real value 'No' (it didn't get an award)
+
+# Precision Precision is the ratio of true positive predictions to the total number of positive predictions (true positives + false positives)
+# in my case for 1 instance its predicted value was 'Yes' (it got an award) and it was correct,
+# and 0 instances has true predicted value but they were incorrect
+
+# Recall is the ratio of true positive predictions to the total number of actual positive instances (true positives + false negatives)
+# in my case for 1 instance its predicted value was 'Yes' (it got an award) and it was correct,
+# and 0 instances has true real value but was predicted to have false value
+
+#  F1-score is the harmonic mean of precision and recall
+
+
+# since all evaluation metrics are high i won't do cross-validation to find the best cp and minsplit
+
+
