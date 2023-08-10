@@ -66,6 +66,7 @@ transormed.dataframe <- function(dataset) {
 }
 
 # function for computing evaluation measures
+# positive class is Yes( the song has been on charts)
 compute.eval.metrics <- function(cmatrix) {
   TP <- cmatrix[1,1] # true positive
   TN <- cmatrix[2,2] # true negative

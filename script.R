@@ -197,7 +197,6 @@ tree1.pred <- predict(object = tree1, newdata = test.data, type = 'class')
 head(tree1.pred)
 
 # to evaluate the predictive quality of the created model we will create confusion matrix
-
 tree1.cm <- table(true = test.data$Award, predicted = tree1.pred)
 tree1.cm
 
@@ -221,5 +220,4 @@ tree1.eval
 
 
 # since all evaluation metrics are high i won't do cross-validation to find the best cp and minsplit
-
 
