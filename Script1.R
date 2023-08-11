@@ -155,6 +155,22 @@ tree1.cm
 tree1.eval <- compute.eval.metrics(tree1.cm)
 tree1.eval
 
+# Accuracy is the proportion of correct predictions made by the model out of total predictions
+# For 41 songs we have predicted that they won't be on charts and they weren't on charts and 
+# for 4 songs we have predicted that they will be on charts and they were
+# For 45 songs( out of 59) we have correctly predicted their value
+
+# Precision is the ratio of true positive predictions to the total number of positive predictions (true positives + false positives)
+# For 4 songs the predicted value was Yes( they will be on charts) and their real value is also Yes
+# For 4 songs the predicted value was Yes( they will be on charts) and their real value is No( they are not on charts)
+# Therefore the precision metrics is 50%
+
+# Recall is the ratio of true positive predictions to the total number of actual positive instances (true positives + false negatives)
+# For 4 songs the predicted value was Yes( they will be on charts) and their real value is also Yes
+# For 10 songs the predicted value was No( they won't be on charts) and their real value is Yes
+# Recall is 28%
+
+#  F1-score is the harmonic mean of precision and recall, it is around 36%
 
 
 
