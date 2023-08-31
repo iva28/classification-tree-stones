@@ -1,6 +1,3 @@
-# In classification tree algorithm the outcome variable is factor variable,
-# whereas the predicting variables can be all types( factor, numeric..) 
-
 #loading "The Rolling Stones" dataset
 dataset <- read.csv('stones_analysis.csv',stringsAsFactors = FALSE,check.names = FALSE)
 
@@ -142,7 +139,7 @@ tree1
 library(rpart.plot)
 rpart.plot(tree1, extra = 104, cex = 0.5)
 
-# Album type, liveness, energy, danceability are variables that have been used for creating the classificaion tree
+# Album type, liveness, energy, danceability are variables that have been used for creating the classification tree
 # In root node there are 238 observations and the dominant class is No( song hasn't been on charts), 76% of observations( songs)
 # in the train set have not been on any chart and 24% have been
 
