@@ -45,6 +45,13 @@ dataset <- dataset[,-c(first.chart:last.chart)]
 prop.table(table(dataset$OnChart))
 # about 76% of songs have been on some chart, while about 24% have not been
 
+# pie chart for OnChart
+library(ggplot2)
+ggplot(data = dataset, mapping = aes(x = OnChart)) +
+  geom_bar(position = 'dodge') +
+  scale_y_continuous(breaks = seq(0,300, by = 20))
+theme_minimal()
+
 #checking for NA values
 apply(dataset, 2, function(x) sum(is.na(x)))
 
@@ -60,7 +67,7 @@ ggplot(dataset, mapping = aes(x = `Album name`, fill = OnChart)) + geom_bar(posi
 # Variable 'Album name' has too many levels in comparison to dataset's size, so it will be excluded from analysis
 ggplot(dataset, mapping = aes(x = `Record Label`, fill = OnChart)) + geom_bar(position = 'fill', width = 0.4)
 # 'Record Label' affects song's ability to appear on charts, so it will be included
-ggplot(dataset, mapping = aes(x = `Album type`, fill = OnChart)) + geom_bar(position = 'fill', width = 0.4)
+ggplot(dataset, mapping = aes(x = `Album type`, fill = OnChart)) + geom_bar(position = 'dodge', width = 0.4)
 # 'Album type' affects song's ability to appear on charts, so it will be included
 ggplot(dataset, mapping = aes(x = `Track number`, fill = OnChart)) + geom_density(alpha = 0.5)
 # 'Track number' will be excluded from model since the density function doesn't differ for songs that 
